@@ -1,32 +1,44 @@
 package anonimizacja;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
 public class Anonimizacja {
-    public static void main(String[] args) throws FileNotFoundException{
-        Scanner textIn = scanFile("textIn");
-        StreamTokenizer rules = new StreamTokenizer(new FileReader("textIn"));
-        PrintWriter textOut = fileToPrint("textOut");
-//        String text = new String();
-//        while (textIn.hasNext()){
-//            text=text+textIn.nextLine();
-//        }
-//        StringTokenizer st = new StringTokenizer(text);
-//
-//        while (st.hasMoreTokens()){
-//            textOut.print(st.nextToken());
-//        }
-//        //textOut.println(text);
-//        textOut.close();
+    public static void main(String[] args) throws FileNotFoundException {
+        Scanner rules = scanFile("rules");
+        StreamTokenizer textIn = new StreamTokenizer(new FileReader("textIn"));
+
+
+        ArrayList<Token> list;
+
+        list=toArrayList(textIn);
+        saveToFile(list);
+
+
+
+    }
+
+    static Scanner scanFile(String fileNemae) throws FileNotFoundException {
+        return new Scanner(new File(fileNemae));
+
+    }
+
+    static PrintWriter fileToPrint(String fileName) throws FileNotFoundException {
+        return new PrintWriter(fileName);
+    }
+
+    static ArrayList toArrayList(StreamTokenizer in) {
+        ArrayList<Token> list = new ArrayList<Token>();
         int wartosc = 0;
+        int i = 0;
         try {
-            while( (wartosc = rules.nextToken()) != StreamTokenizer.TT_EOF ){
+            while( (wartosc = in.nextToken()) != StreamTokenizer.TT_EOF ){
                 if(wartosc == StreamTokenizer.TT_WORD)
-                    System.out.println("Wczytano słowo: "+ rules.sval);
+                    list.add(i, new Token(in.sval,false,TokenType.slowo));
                 else if(wartosc == StreamTokenizer.TT_NUMBER)
-                    System.out.println("Wczytano liczbę: "+ rules.nval);
+                    list.add(i, new Token(String.valueOf(in.nval),true,TokenType.liczba));
             }
         } catch (IOException e) {
             System.out.println("BŁĄD ODCZYTU Z PLIKU!");
@@ -34,14 +46,15 @@ public class Anonimizacja {
         }
 
 
+        return list;
     }
+    static void saveToFile(ArrayList<Token> in) throws FileNotFoundException{
+        PrintWriter textOut = fileToPrint("textOut");
 
-    static Scanner scanFile(String fileNemae) throws FileNotFoundException{
-        return new Scanner(new File(fileNemae));
+        for(Token element: in){
+            System.out.print(in.get(1));
+        }
+
+        textOut.close();
     }
-
-    static PrintWriter fileToPrint(String fileName) throws FileNotFoundException{
-        return new PrintWriter(fileName);
-    }
-
 }
