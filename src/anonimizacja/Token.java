@@ -1,9 +1,9 @@
 package anonimizacja;
 
 public class Token {
-     String word;
-     Boolean toAnonimize;
-     TokenType type;
+    private String word;
+    private Boolean toAnonimize;
+    private TokenType type;
 
     Token(String word, Boolean toAnonimize, TokenType type) {
         this.word = word;

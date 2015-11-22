@@ -3,18 +3,23 @@ package anonimizacja;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.StringTokenizer;
 
 public class Anonimizacja {
     public static void main(String[] args) throws FileNotFoundException {
-        Scanner rules = scanFile("rules");
-        StreamTokenizer textIn = new StreamTokenizer(new FileReader("textIn"));
 
+        StreamTokenizer textIn = new StreamTokenizer(new FileReader("testImiona"));
 
         ArrayList<Token> list;
 
-        list=toArrayList(textIn);
-        saveToFile(list);
+        list=toArrayList(textIn); // DONE
+
+        list=reverseList(list); //DONE
+
+        list=tokenize(list); //TO DO
+
+       // list = anonimize(list); //To Do
+
+        saveToFile(list); //DONE
 
 
 
@@ -31,7 +36,7 @@ public class Anonimizacja {
 
     static ArrayList toArrayList(StreamTokenizer in) {
         ArrayList<Token> list = new ArrayList<Token>();
-        int wartosc = 0;
+        int wartosc;
         int i = 0;
         try {
             while( (wartosc = in.nextToken()) != StreamTokenizer.TT_EOF ){
@@ -45,16 +50,37 @@ public class Anonimizacja {
             System.exit(2);
         }
 
-
         return list;
     }
+
+    static ArrayList reverseList(ArrayList<Token> in){
+        ArrayList<Token> out= new ArrayList<Token>();
+        for(int i=in.size()-1;i>=0;i--){
+            out.add(in.get(i));
+        }
+        return out;
+    }
+
     static void saveToFile(ArrayList<Token> in) throws FileNotFoundException{
         PrintWriter textOut = fileToPrint("textOut");
 
+
         for(Token element: in){
-            System.out.print(in.get(1));
+        //    textOut.print(element.getWord()+" ");
+        System.out.println(element.getWord());
         }
 
         textOut.close();
     }
+
+    static ArrayList tokenize(ArrayList<Token> in){
+        ArrayList<Token> out = new ArrayList<>();
+        for(int i=0;i<in.size();i++){
+            out.add(new Token(in.get(i).getWord(),in.get(i).getToAnonimize(),in.get(i).getType()));
+        }
+
+        return out;
+    }
+
+
 }

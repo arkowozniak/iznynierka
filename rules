@@ -1,4 +1,4 @@
-(Imię Nazwisko -> ZastapInicjalami(Imię Nazwisko))
-(Imię Imię Nazwisko -> ZastapInicjalami(Imię Imię Nazwisko))
-(Imię Nazwisko-Nazwisko -> ZastapInicjalami(Imię Nazwisko-Nazwisko))
-(Imię Imię Nazwisko-Nazwisko -> ZastapInicjalami(Imię Imię Nazwisko-Nazwisko))
+(Imie Nazwisko - > ZastapInicjalami(Imie Nazwisko),1)
+(Imie Imie Nazwisko - > ZastapInicjalami(Imie Imie Nazwisko),1)
+(Imie Nazwisko-Nazwisko - > ZastapInicjalami(Imie Nazwisko-Nazwisko),1)
+(Imie Imie Nazwisko-Nazwisko - > ZastapInicjalami(Imie Imie Nazwisko-Nazwisko),1)
