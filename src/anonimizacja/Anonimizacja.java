@@ -1,5 +1,8 @@
 package anonimizacja;
 
+import anonimizacja.enums.TokenType;
+import anonimizacja.enums.functionToAnonimize;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -7,7 +10,9 @@ import java.util.Scanner;
 public class Anonimizacja {
     public static void main(String[] args) throws FileNotFoundException {
 
-        StreamTokenizer textIn = new StreamTokenizer(new FileReader("testImiona"));
+
+
+        StreamTokenizer textIn = new StreamTokenizer(new FileReader("textFiles/testImiona"));
 
         ArrayList<Token> list;
 
@@ -41,7 +46,7 @@ public class Anonimizacja {
         try {
             while( (wartosc = in.nextToken()) != StreamTokenizer.TT_EOF ){
                 if(wartosc == StreamTokenizer.TT_WORD)
-                    list.add(i, new Token(in.sval,false,TokenType.slowo));
+                    list.add(i, new Token(in.sval,false, TokenType.slowo));
                 else if(wartosc == StreamTokenizer.TT_NUMBER)
                     list.add(i, new Token(String.valueOf(in.nval),true,TokenType.liczba));
             }

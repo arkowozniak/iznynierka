@@ -1,6 +1,8 @@
 package anonimizacja;
 
-public class Token {
+import anonimizacja.enums.TokenType;
+
+class Token {
     private String word;
     private Boolean toAnonimize;
     private TokenType type;
@@ -12,14 +14,14 @@ public class Token {
     }
 
     public String getWord() {
-        return word;
+        return this.word;
     }
 
     public Boolean getToAnonimize() {
-        return toAnonimize;
+        return this.toAnonimize;
     }
 
     public TokenType getType() {
-        return type;
+        return this.type;
     }
 }
