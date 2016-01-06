@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="languagetool">
+    <CLASSES>
+      <root url="file://D:/Desktop/LanguageTool-3.1/org/languagetool" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
